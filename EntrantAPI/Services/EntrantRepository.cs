@@ -1,4 +1,5 @@
-﻿using EntrantAPI.Entities;
+﻿using AutoMapper;
+using EntrantAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace EntrantAPI.Services
     {
         private List<Entrant> _entrants;
         
-        public EntrantRepository()
+        public EntrantRepository(IMapper mapper)
         {
             
             _entrants = new List<Entrant>()

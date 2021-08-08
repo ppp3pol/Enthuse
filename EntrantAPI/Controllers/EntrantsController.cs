@@ -1,5 +1,7 @@
-﻿using EntrantAPI.Entities;
+﻿using AutoMapper;
+using EntrantAPI.Entities;
 using EntrantAPI.Services;
+using EntrantAPI.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,10 +16,12 @@ namespace EntrantAPI.Controllers
     public class EntrantsController : ControllerBase
     {
         private readonly IEntrantRepository repository;
+        private readonly IMapper mapper;
 
-        public EntrantsController(IEntrantRepository repository)
+        public EntrantsController(IEntrantRepository repository, IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
         [HttpGet]
         public ActionResult<List<Entrant>> Get()
@@ -56,10 +60,11 @@ namespace EntrantAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Entrant entrant)
+        public ActionResult Post([FromBody] CreateEntrantDTO entrantDto)
         {
             try
             {
+                var entrant = mapper.Map<Entrant>(entrantDto);
                 repository.AddEntrant(entrant);
                 return new CreatedAtRouteResult("getEntrant", new { Id = entrant.Id }, entrant);
             }

@@ -1,3 +1,4 @@
+using AutoMapper;
 using EntrantAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +27,10 @@ namespace EntrantAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
             services.AddSingleton<IEntrantRepository, EntrantRepository>();
+
+
         }
 
 

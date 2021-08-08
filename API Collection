@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "4fc8d735-4247-4bd8-85c8-74785cf8f1dd",
+		"name": "Entrant API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List all Entrants",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:29438/api/entrants"
+			},
+			"response": []
+		},
+		{
+			"name": "List Entrant by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:29438/api/entrants/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Entrant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"John\",\r\n    \"lastname\" : \"Luise\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:29438/api/entrants"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Entrant",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:29438/api/entrants/2"
+			},
+			"response": []
+		}
+	]
+}
