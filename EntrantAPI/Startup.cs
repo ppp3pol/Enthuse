@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,10 @@ namespace EntrantAPI
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
             services.AddSingleton<IEntrantRepository, EntrantRepository>();
+            services.AddSwaggerGen(Configuration =>
+            {
+                Configuration.SwaggerDoc("v1", new OpenApiInfo { Version = "V1", Title = "EntrantAPI" });
+            });
 
 
         }
@@ -37,6 +42,11 @@ namespace EntrantAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(Configuration =>
+            {
+                Configuration.SwaggerEndpoint("/swagger/v1/swagger.jason", "EntrantAPI");
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
