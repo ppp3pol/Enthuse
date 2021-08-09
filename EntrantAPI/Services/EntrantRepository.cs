@@ -38,12 +38,23 @@ namespace EntrantAPI.Services
             return _entrants.FirstOrDefault(x => x.Id == Id);
         }
 
+       
+
         public void AddEntrant(Entrant entrant)
         {
             entrant.Id = _entrants.Max(x => x.Id) + 1;
             _entrants.Add(entrant);
         }
-
+        public void UpdateEntrant(int id ,Entrant entrant)
+        {
+            _entrants.Where(w => w.Id == id).ToList().ForEach(f =>
+            {
+                f.FirstName = entrant.FirstName;
+                f.LastName = entrant.LastName;
+            });            
+            
+           
+        }
         public void DeleteEntrantById(int Id)
         {
             var itemtoRemove =  _entrants.FirstOrDefault(x => x.Id == Id);

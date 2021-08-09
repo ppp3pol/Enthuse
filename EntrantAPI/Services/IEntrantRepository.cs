@@ -5,9 +5,10 @@ namespace EntrantAPI.Services
 {
     public interface IEntrantRepository
     {
-        void AddEntrant(Entrant entrant);
         List<Entrant> GetAllEntrants();
         Entrant GetEntrantById(int Id);
+        void AddEntrant(Entrant entrant);
         void DeleteEntrantById(int Id);
+        void UpdateEntrant(int id,Entrant entrant);
     }
 }

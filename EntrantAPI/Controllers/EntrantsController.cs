@@ -29,7 +29,7 @@ namespace EntrantAPI.Controllers
             try
             {
                 var entrants = repository.GetAllEntrants();
-                return Ok(entrants);
+               return Ok(entrants);
             }
             catch(Exception ex)
             {
@@ -74,6 +74,32 @@ namespace EntrantAPI.Controllers
                 "Error creating new employee record");
             }
            
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Put(int id,[FromBody] CreateEntrantDTO entrantDto)
+        {
+            try
+            {
+                var entrantIsExist = repository.GetEntrantById(id);
+
+                if (entrantIsExist == null)
+                {
+                    return BadRequest(string.Format("No Entrant found with Id = {0}", id));
+                }
+
+                var entrant = mapper.Map<Entrant>(entrantDto);
+                entrant.Id = id;
+                repository.UpdateEntrant(id,entrant);
+                return new CreatedAtRouteResult("getEntrant", new { Id = entrant.Id }, entrant);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                "Error creating new employee record");
+            }
+
         }
 
         [HttpDelete("{id}")]
