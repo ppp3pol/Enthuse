@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4fc8d735-4247-4bd8-85c8-74785cf8f1dd",
+		"_postman_id": "48a68c32-ec16-41e0-82b2-c6f97d87fc79",
 		"name": "Entrant API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -47,6 +47,24 @@
 				"method": "DELETE",
 				"header": [],
 				"url": "http://localhost:29438/api/entrants/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"firstName\": \"Test\",\r\n        \"lastName\": \"TestName\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:29438/api/entrants/3"
 			},
 			"response": []
 		}
